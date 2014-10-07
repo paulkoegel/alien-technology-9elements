@@ -1,3 +1,7 @@
+Interactive Slides: [https://paulwittmann.github.io/alien-technology-9elements](https://paulwittmann.github.io/alien-technology-9elements)
+
+---
+
 # Alien Technology: Ideas from the Clojureverse
 ## 9elements Edition
 
