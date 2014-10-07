@@ -1,0 +1,10 @@
+# Alien Technology: Ideas from the Clojureverse
+
+## A Breakneck Journey through Functional Programming, LISP, Clojure(Script), Om, and React.
+
+Slides from Railscamp Germany 2014.
+
+View presentation here: [https://dl.dropboxusercontent.com/u/15321563/railscamp-2014-presentation/index.html](https://dl.dropboxusercontent.com/u/15321563/railscamp-2014-presentation/index.html)  
+Press `p` to switch to presenter mode and see my notes.
+
+

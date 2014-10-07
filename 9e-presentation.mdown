@@ -1,0 +1,527 @@
+# Alien Technology: Ideas from the Clojureverse
+## 9elements Edition
+
+* * *
+
+**Paul Wittmann**  
+[@wakkahari](https://twitter.com/wakkahari)  
+paul@railslove.com
+
+.small[
+7\. Oktober 2014, Bochum  
+[Railscamp Slides](https://github.com/paulwittmann/railscamp-2014-alien-technology)
+]
+
+---
+
+## Technologie wie vom anderen Stern
+
++ zu gut um wahr zu sein
++ fremdartig
+
+.width-100[
+![alien technology](images/alien_technology.png)]
+
+---
+
+.with-small-margins[
+### Überblick
+]
+
+.short[
++ Clojure
+  - Warum?
+  - Ideen dahinter
+  - Wo anfangen?
++ Om
+  - unveränderbare Datenstrukturen & globaler Zustand, Undo, core.async
++ Mehr:
+  - Overtone, Datomic, DataScript
+]
+
+???
+anfangen: 4clojure, UserGroup, Bücher, Podcasts (cognicast), Vorträge (best hits, Nolen)
+who to follow: @swannodette, @floydophone, @fogus
+
+WARUM:
++ "Simplicity matters" -> mitdenken
++ Tim Ewald - "Clojure: Programming with Hand Tools"
+https://www.youtube.com/watch?v=ShEez0JkOFw
++ aktiv, netter Community
+
+ANFANGEN:
++ 4clojure und Bücher trocken
++ Om als Einstiegshilfe (Browser!)
+
+MEHR
++ https://jackschaedler.github.io/goya/
++ http://devartcodefactory.com/#/home
+
+---
+
+.with-small-margins[
+### Meine Motivation
+]
+
+.extra-short[
++ Grenzen von OOP, neugrierig auf [funktionale Programmierung](https://en.wikipedia.org/wiki/Functional_programming) und LISP.
++ Clojure ist modern, aktive und nette Community, man kann Webapps mit bauen.
++ Om als Türöffner in Clojure - im Browser kann ich anfassbare Sachen in vertrauter Umgebung bauen, die nicht so langweilig wie Programmierbuch-Beispiele sind.
++ Nebeneffekt: Om & React sind interessante "JS-MVC" und alle anderen überzeugen mich bisher nicht.
++ Blog Post "My Way into Clojure: Building a Card Game with Om" in Vorbereitung
+]
+
+---
+
+## Einstieg ins Ökosystem: Vorträge
+.short[
++ Rails Conf 2012 Keynote: [Simplicity Matters by Rich Hickey](https://www.youtube.com/watch?v=rI8tNMsozo0)
++ Tim Ewald - [Clojure: Programming with Hand Tools](https://www.youtube.com/watch?v=ShEez0JkOFw)
++ ["The Future of JavaScript MVC Frameworks"](https://swannodette.github.io/2013/12/17/the-future-of-javascript-mvcs)
++ Geekstammtisch mit Moritz Heidkamp - "Vom Tellerwäscher zum LISP-Entwickler"
++ [The Changelog: Rich Hickey's Greatest Hits](http://thechangelog.com/rich-hickeys-greatest-hits)
+]
+
+---
+
+## Einstieg ins Ökosystem: Tools & Infos
+.short[
++ [LightTable](http://www.lighttable.com) statt Emacs, da ClojureScript Integration zwischen Editor und Browser viel leichter war - [tutorial](https://github.com/swannodette/lt-cljs-tutorial); [demo](https://www.youtube.com/watch?v=C0Mf_KIWX38)
++ [Offizielles Om tutorial](https://github.com/swannodette/om/wiki/Basic-Tutorial)
++ O'Reilly-Buch: [Clojure Programming](http://shop.oreilly.com/product/0636920013754.do)
++ Cognitect Podcast: [The Cognicast](http://blog.cognitect.com/cognicast)
++ [Clojure Gazette](http://www.clojuregazette.com): wöchentlicher Newsletter
+]
+
+---
+
+# Clojure
+
++ 2007
++ Rich Hickey
++ Richs 4\. Versuch eines gehosteten LISPs
+
+.small[
+The following photos of David Nolen and Rich Hickey © and courtesy of <a href="https://secure.flickr.com/photos/lucasbridge">Mike Bridge</a>. Sources: <a href="https://secure.flickr.com/photos/lucasbridge/8058449485/in/photostream">David</a>, <a href="https://secure.flickr.com/photos/lucasbridge/8058501680">Rich</a>.
+]
+
+---
+
+background-image: url(images/rich_hickey.jpg)
+
+---
+
+background-image: url(images/david_nolen.jpg)
+
+---
+
+## Clojure
+1. **LISP**
+2. **unveränderbare Datenstrukturen**
+3. **simpel**
+4. dynamisch
+5. funktional
+6. pragmatisch
+7. läuft auf JVM, CLR, JavaScript engines
+
+???
+pragmatisch:
++ JVM: existierende Libs nutzen, läuft auf existierender Infrastruktur - aber: [Thumbs down for Clojure](http://www.loper-os.org/?p=42)
++ Vektoren
++ keine listen-paare in let-vektoren `let [x (first foo), y (last some), .. ]` in richtigem LISP: `let('(x (first foo)), '(y (last y)))`
++ nicht rein funktional
++ dynamisch
+
+---
+
+.width-100[
+![elegant weapons](images/elegant_weapons.png)]
+
+---
+
+.with-small-margins[
+### Code as data / Homoiconicity
+]
+
+“Lisp is a programmable programming language.” — John Foderaro
+.short[
++ Ruby: `3 * 4 + 7`
++ Clojure: `(+ 7 (* 3 4))`
++ **Homoikonisch**: Code hat gleiche Struktur wie der Abstract Syntax Tree (AST)
++ Ruby ist nicht homoikonisch. Der Interpreter muss den AST aus dem Code erstellen und dabei z.B. die Operratorrangfolge beachten.
+]
+
+---
+
+.large[```clojure
+(+ 1 1)
+```]
+
+.short[
++ Code ist eine Datenstruktur - eine Clojure Liste
++ erstes Listenelement (`+`, Operator) wird ausgeführt, Rest sind Operanden
++ Macros: Code kann wie jede andere Datenstruktur behandelt und manipuliert werden - z.B. `map` auf Quellcode anwenden.
+]
+
+---
+
+.with-small-margins[
+### Ausblick: noch weiter gedacht
+]
+
+.small-image[
+  ![Chris Granger](images/chris_granger.jpg)
+]
+
+.extra-short[
++ wenn der Code eine Datenstruktur ist, warum dann in Textdateien statt in einer Datenbank speichern?
++ Chris Granger: Programming inside a Database. Thoughtbot Podcast http://podcasts.thoughtbot.com/giantrobots/111
++ [An Ex-Microsoft Engineer Raised $2.3 Million To Make Programming Super Simple](http://www.businessinsider.com/chris-granger-ex-microsoft-raises-23-million-for-eve-2014-10)
+]
+
+---
+
+### Veränderbare Datenstrukturen in Ruby
++ Hashes, Arrays, ... sogar Strings.
+
+```ruby
+x = "MiXeD cAsE"
+
+x.upcase!
+=> "MIXED CASE"
+
+x
+=> "MIXED CASE" # (same object_id)
+```
+
+???
++ thank God there's normal `upcase` as well, so mutation is not the default, but it's possible. And we mutate arrays or hashes all over the place.
++ Clojure: immutable. Easier-to-reason-about applications. 
+
++ (atoms: mutable, but the REF - not the function/method decides whether mutation takes place)
+
+---
+
+.with-small-margins[
+### Unveränderbare Datenstrukturen]
+
+.small.extra-short[+ Ruby: meiste Datenstrukturen veränderbar (upcase -vs- upcase!) - verwendete Methoden entscheiden, ob verändert wird
+  - daneben: Konstanten, object.freeze etc.
++ Clojure: Datenstrukturen **un**veränderbar - es gibt kein upcase! und niemand kann eines in Clojure schreiben. Große Vereinfachung, die auf Sprechebene erfolgen sollte.
++ wie arbeitet man dann noch, wenn nichts veränderbar ist? -> Veränderbare Referenzen (in Om: [atoms](http://clojure.org/atoms))
++ Clojure-Funktionen verändern nie ihre Argumente sondern geben immer veränderte Kopien zurück.
+]
+
+???
+immutability will man auf SPRACHebene - anders kann man sich nicht drauf verlassen, dass nicht doch jemand schindluder treibt und was verändert
+
+---
+
+# Beispiel
+
+```clojure
+(def my_vec '( 1 2 3 4 ))
+=> #'user/my_vec
+
+(conj (pop my_vec) 11) ;; remove first el, add 11 to front
+=> (11 2 3 4)
+
+;; gleicher Befehl mit threading macro (`->`) statt Verschachtelung
+(-> my_vec
+    pop
+    (conj 11))
+=> (11 2 3 4)
+
+;; bleibt von allen Funktionsaufrufen unverändert
+;; es kann keine Bang-Funktionen wie in Ruby geben
+my_vec
+=> (1 2 3 4)
+```
+
+---
+
+background-image: url(images/linked_list.png)
+
+???
+
++ Works like git, only small diffes are kept to create second vector.
++ important for Om
+
+---
+
+# Simplicity
+
+"We can make the same exact software we are making today with dramatically simpler stuff. Radically simpler than Ruby, which seems really simple. Why aren't we?"
+
+.medium[
+Rich Hickey. 2012. "Simplicity matters".]
+
+???
+If there's one thing to take away from this talk then it's to watch this talk.
+
+---
+
+.with-small-margins[
+# Simple (einfach)]
+
+"Simple is the opposite of complex. A thing is simple if it has no interleaving, if it has one purpose, one concept, one dimension, one task.  
+Being simple does not imply one instance or one operation: it's about interleaving, not cardinality. Importantly, this means that simplicity is objective."
+
+.medium[
+Rich Hickey. "Simple made easy".]
+
+???
++ the good one
+
+---
+
+# Easy (leicht)
+Easy is the opposite of hard, or difficult. A thing is easy if it's near to hand, if it's easy to get at (location), if it's near to our understanding (__familiarity__) [...] This means that ease is __relative__.
+
+.medium[
+Rich Hickey. "Simple made easy".]
+
+---
+
+# Beispiel
+"Speaking English is dead easy for me, but that doesn't mean that speaking English is intrinsically simple. I find French quite difficult. Little French children speak French all the time, [...] It's easy for them, it lies near to them."
+
+.medium[
+Rich Hickey. "Simple made easy".]
+
+---
+
+# Complex -vs- Simple
++ syntax - data
++ variables - managed refs
++ state, objects - values
++ ORM - unadorned data
+
+.medium[
+"Simplicity Matters"  
+(http://youtu.be/rI8tNMsozo0?t=21m41s)]
+
+---
+
+# Problem with OOP
+
++ hidden encapsulated state (instance variables)
++ calling `my_object.some_method(5)` can return different results when `some_method` depends on the object's mutable internal state
+
+---
+
+class: background-fit
+background-image: url(images/hickey_state.jpg)
+
+---
+
+.with-small-margins[
+## Zusammengefasst
+]
+
+.with-small-margins[
+### Simple (einfach)]
+.extra-short[
++ opposite of complex (braided, interwoven)
++ about one thing
++ objective]
+<br>
+
+.with-small-margins[
+### Easy (leicht)]
+.extra-short[
++ opposite of hard
++ relative
++ easy for me -vs- easy for you]
+
+---
+
+### Gefahr gerade für Rubyprogrammierer
++ leichte (easy) Sachen für einfache (simple) halten
++ `gem install hairball`  
+  `rails new my_blog`
+  geht leicht von der Hand, aber kann einen ganzen Batzen Komplexität mit sich bringen - z.B. `devise`...  
+  "Do you know what you ship?"
+
+---
+
+class: background-cover
+background-image: url(images/more_ancestors_than_jesus_orig.png)
+
+---
+
+# Clojure ~= ClojureScript
+
+???
+im Gegensatz zu Java - JavaScript
+
+---
+
+.with-small-margins[
+### Clojure compiler]
+.short[
++ in Java geschrieben
++ kompiliert Clojure-Code zu Java-Bytecode
+]
+
+.with-small-margin-bottom[
+### ClojureScript Compiler]
+.short[
++ ist in Clojure geschrieben (leider nicht self-hosting!)
++ kompiliert ClojureScript-Code zu JavaScript
++ ClojureScript hat im Ggs. zu CoffeeScript (weitestgehend JavaScript Semantik) **Clojure Semantik**]
+
+???
++ subset: single thread, can't do some Clojure stuff
++ we treat them as one language targeting two platforms - Java doesn't run everywhere...
++ Clojure compilation contains more than CoffeeScript compilation, since it remodels Clojure data structures in JavaScript
+
+---
+
+.with-small-margins[
+### David Nolen über React
+]
+.small-quote[
+"I totally wrote it off. I was like, “This is not something I’m ever going to use.” But I have a good friend, Brandon Bloom, who was familiar with programming games on the Xbox. When React came out, he was like, _“Yeah, it looks weird. But you really should look at how it works because it’s like the way that game developers do game engines.”_  
+Then **Pete Hunt** went to JSConf in 2013 and he gave a great talk about the design. And I sort of got an epiphany."
+]
+<br>
+.small[
+[http://javascriptjabber.com/107-jsj-clojurescript-om-with-david-nolen](http://javascriptjabber.com/107-jsj-clojurescript-om-with-david-nolen)
+]
+
+---
+
+# Reacts Killer Feature: Virtual DOM
++ ![DOOM 3 rendering engine](images/react_doom_3_rendering.png)
+
+---
+
+# Virtual DOM (VDOM)
+
+.small[
+Daten: JSON  
+Templates: z.B. Handelbars
+]
+
++ normales JS-MVC:  
+  Daten -> Template -> DOM
+
++ React:  
+  Daten -> Template -> virtueller DOM -> DOM
+
+---
+
+# Bottleneck: DOM updates
+
++ VDOM is a plain JS object
+1. data changes, templates get rerendered
+2. new VDOM gets DIFFed with old one
+3. minimal set of actual DOM updates calculated
+
+---
+
+<blockquote class="twitter-tweet" lang="en"><p>often devs still approach performance of JS code as if they are riding a horse cart but the horse had long been replaced with fusion reactor</p>&mdash; Vyacheslav Egorov (@mraleph) <a href="https://twitter.com/mraleph/status/411549064787152896">December 13, 2013</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+---
+
+### Backbone
+.short[
++ change a user's name that's displayed in several Views on the page: all these views get rerendered entirely
+]
+
+### React
+.short[
++ if any part of our app's data changes, we can just rerender EVERYTHING.
++ instead of writing JS code that describes changes to the DOM we describe what the DOM should look like.
+]
+
+???
++ frameworks like Ember do a lot for you behind the scenes to remain performant and make your life easier (remember simplicity!?) - React is just way _simpler_ than that.
+
+---
+
+# Om
+
++ "ClojureScript interface to Facebook's React"
++ https://github.com/swannodette/om
++ globaler App-Zustand
++ immutable data structures (Clojure Semantik in CLJS)
+
+---
+
+# Om: Global app state
+
++ [Om Cursor](https://github.com/swannodette/om/wiki/Cursors)
++ undo in 13 Zeilen ClojureScript
++ not a memory problem b/c our persistent data structures use structural sharing.
++ Probleme mit Globalem App State: [Decomposing web app development](http://tonsky.me/blog/decomposing-web-app-development)
+
+---
+
+# Om
+
++ Om benefits from ClojureScript's immutable data structures
++ even faster diffing: only reference equality checks -vs- traversing the entire JSON structure.
+
+---
+
+.with-small-margins[
+### Communicating Sequential Processes (CSP) via core.async
+]
+.short[
++ wie Go-Blöcke aus Golang - über Macros in Clojure(Script) implementiert
++ [Make no promises](https://swannodette.github.io/2013/08/23/make-no-promises) - David Nolen
++ Webinar: [Designing Front End Applications with core.async](http://go.cognitect.com/core_async_webinar_recording)
++ [Communicating sequential processes](https://en.wikipedia.org/wiki/Communicating_sequential_processes)
++ [Implementation details of core.async Channels](http://vimeo.com/100518968) - Rich Hickey
+]
+
+---
+
+.with-small-margins[
+### Links
+]
+
+.extra-short[
++ [The Cognicast](http://blog.cognitect.com/cognicast)
++ [ClojureScript User Group San Francisco](http://pchristensen.com/blog/articles/sfcljs-august-meetup-om)
++ Rich Hickey. "Simplicity matters". Rails Conf. 2012. [http://tinyurl.com/simplicity-matters](http://tinyurl.com/simplicity-matters).
++ [4 Features Javascript can steal from Clojure(Script)](http://www.lispcast.com/four-features-javascript-can-steal-from-clojure)
++ [Beating the Averages](http://www.paulgraham.com/avg.html)
++ [Offizielles Om tutorial](https://github.com/swannodette/om/wiki/Basic-Tutorial)
++ [DataScript](https://github.com/tonsky/datascript)
++ [Chatting cats use DataScript for fun](http://tonsky.me/blog/datascript-chat)
++ Mein eigenes Solitaire-ähnliches Kartenspiel [Omingard](https://github.com/paulwittmann/omingard)
+]
+
+---
+
+.with-small-margins[
+### Who to follow
+]
+
+.extra-short[
++ [David Nolen]((https://twitter.com/swannodette): main ClojureScript maintainer, creator of Om, ex-New York Times, now Cognitect
++ [Rich Hickey]((https://twitter.com/richhickey): inventor of Clojure, Cognitect
++ [Michael Fogus]((https://twitter.com/fogus): author of "The Joy of Clojure" and "Functional JavaScript with Underscore.js"
++ [Carsten Schmidt](https://twitter.com/toxi): coder/media artist (lots of Processing), recently also Clojure(Script) (e.g.: http://devartcodefactory.com/#/objects/edit/box), [Clojure tutorial](http://www.creativeapplications.net/tutorials/introduction-to-clojure-part-1), [short portrait](https://www.youtube.com/watch?v=USrM43hZSOQ), [long interview](https://www.youtube.com/watch?v=tKIVJ2TaS2k).
++ [Craig Andera](https://twitter.com/craigandera): Cognicast host
++ [Eric Normand](https://twitter.com/ericnormand): LISP casts author, Clojure blogger
++ [Cologne Clojure User Group](http://www.meetup.com/clojure-cologne)
+]
+
+---
+
+### Meta-Ex - Music Live Coding with Overtone & Emacs
+![meta-ex](images/meta-ex.jpg)
+
+---
+
+.with-small-margins[
+### Zu guter Letzt - wem das alles noch zu wenig ALIEN war]
+
+[Urbit](http://alexkrupp.typepad.com/sensemaking/2013/12/a-brief-introduction-to-urbit.html)
+
+![Alien DJ](images/alien_dj.jpg)
