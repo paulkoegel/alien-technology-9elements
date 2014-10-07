@@ -524,4 +524,7 @@ Templates: z.B. Handelbars
 
 [Urbit](http://alexkrupp.typepad.com/sensemaking/2013/12/a-brief-introduction-to-urbit.html)
 
+.extra-small[
+photo: Lukas Indruch, source: [https://secure.flickr.com/photos/_603_/5624871391](https://secure.flickr.com/photos/_603_/5624871391)
 ![Alien DJ](images/alien_dj.jpg)
+]
