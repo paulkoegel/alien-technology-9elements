@@ -107,11 +107,11 @@ The following photos of David Nolen and Rich Hickey © and courtesy of <a href="
 
 ---
 
-![images/rich_hickey.jpg](images/rich_hickey.jpg)
+background-image: url(images/rich_hickey.jpg)
 
 ---
 
-![images/david_nolen.jpg](images/david_nolen.jpg)
+background-image: url(images/david_nolen.jpg)
 
 ---
 

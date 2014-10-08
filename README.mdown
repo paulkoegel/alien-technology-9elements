@@ -76,11 +76,11 @@ The following photos of David Nolen and Rich Hickey © and courtesy of <a href="
 
 ---
 
-[Rich Hickey](images/rich_hickey.jpg)
+![Rich Hickey](images/rich_hickey.jpg)
 
 ---
 
-[David Nolen](images/david_nolen.jpg)
+![David Nolen](images/david_nolen.jpg)
 
 ---
 
@@ -240,7 +240,7 @@ Rich Hickey. "Simple made easy".
 + about one thing
 + objective
 
-### Easy (leicht)]
+### Easy (leicht)
 + opposite of hard
 + relative
 + easy for me -vs- easy for you
