@@ -1,13 +1,17 @@
-Interactive Slides: [https://paulwittmann.github.io/alien-technology-9elements](https://paulwittmann.github.io/alien-technology-9elements)
+# Slides
+[![slides](images/slides.png)](https://paulwittmann.github.io/alien-technology-9elements)
+
+---
 
 # Preamble
 ![alien brother](http://monosnap.com/image/ui5lC1sBggRErueVVCQouQ49Jq7PrO.png)
+
 "I'll tell you what that is.
-That's a alien, brother. Believe it.
-It must have come from outer space,
+That's an alien, brother. Believe it.
+Must have come from outer space,
 trying to take over Earth.
-But it landed in the wrong place.
-\- The wrong place!"  
+But it landed in the wrong place
+\- the **wrong** place!"  
 
 [Video from "Attack the Block"](https://www.youtube.com/watch?v=0UxpuQlPXQg&feature=youtu.be&t=56s)
 
