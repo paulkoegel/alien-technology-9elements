@@ -226,6 +226,7 @@ Rich Hickey. "Simple made easy".
 
 + hidden encapsulated state (instance variables)
 + calling `my_object.some_method(5)` can return different results when `some_method` depends on the object's mutable internal state
++ Clojure is _pragmatic_ and tries to retain good features of OOP - e.g. [multimethods](http://clojure.org/multimethods) or [component](https://github.com/stuartsierra/component): "Managed lifecycle of stateful objects in Clojure"
 
 ---
 
