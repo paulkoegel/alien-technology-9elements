@@ -509,9 +509,9 @@ Templates: z.B. Handelbars
 ]
 
 .extra-short[
-+ [David Nolen]((https://twitter.com/swannodette): main ClojureScript maintainer, creator of Om, ex-New York Times, now Cognitect
-+ [Rich Hickey]((https://twitter.com/richhickey): inventor of Clojure, Cognitect
-+ [Michael Fogus]((https://twitter.com/fogus): author of "The Joy of Clojure" and "Functional JavaScript with Underscore.js"
++ [David Nolen](https://twitter.com/swannodette): main ClojureScript maintainer, creator of Om, ex-New York Times, now Cognitect
++ [Rich Hickey](https://twitter.com/richhickey): inventor of Clojure, Cognitect
++ [Michael Fogus](https://twitter.com/fogus): author of "The Joy of Clojure" and "Functional JavaScript with Underscore.js"
 + [Carsten Schmidt](https://twitter.com/toxi): coder/media artist (lots of Processing), recently also Clojure(Script) (e.g.: http://devartcodefactory.com/#/objects/edit/box), [Clojure tutorial](http://www.creativeapplications.net/tutorials/introduction-to-clojure-part-1), [short portrait](https://www.youtube.com/watch?v=USrM43hZSOQ), [long interview](https://www.youtube.com/watch?v=tKIVJ2TaS2k).
 + [Craig Andera](https://twitter.com/craigandera): Cognicast host
 + [Eric Normand](https://twitter.com/ericnormand): LISP casts author, Clojure blogger
