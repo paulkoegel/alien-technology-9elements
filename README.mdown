@@ -368,6 +368,7 @@ Templates: z.B. Handelbars
 + [Offizielles Om tutorial](https://github.com/swannodette/om/wiki/Basic-Tutorial)
 + [DataScript](https://github.com/tonsky/datascript)
 + [Chatting cats use DataScript for fun](http://tonsky.me/blog/datascript-chat)
++ [Goya pixel editor](https://jackschaedler.github.io/goya)
 + Mein eigenes Solitaire-ähnliches Kartenspiel [Omingard](https://github.com/paulwittmann/omingard)
 
 ---
