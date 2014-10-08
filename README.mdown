@@ -176,7 +176,7 @@ my_vec
 
 ---
 
-[linked list](images/linked_list.png)
+![linked list](images/linked_list.png)
 
 ---
 
