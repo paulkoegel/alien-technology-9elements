@@ -64,7 +64,7 @@ MEHR
 ]
 
 .extra-short[
-+ Grenzen von OOP, neugrierig auf [funktionale Programmierung](https://en.wikipedia.org/wiki/Functional_programming) und LISP.
++ Grenzen von OOP, neugierig auf [funktionale Programmierung](https://en.wikipedia.org/wiki/Functional_programming) und LISP.
 + Clojure ist modern, aktive und nette Community, man kann Webapps mit bauen.
 + Om als Türöffner in Clojure - im Browser kann ich anfassbare Sachen in vertrauter Umgebung bauen, die nicht so langweilig wie Programmierbuch-Beispiele sind.
 + Nebeneffekt: Om & React sind interessante "JS-MVC" und alle anderen überzeugen mich bisher nicht.
